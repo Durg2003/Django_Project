@@ -1,0 +1,32 @@
+<p>Welcome to Employee Page</p>
+
+<form action="{% url 'update' emp_obj_edit.id %}" method="POST">
+    {% csrf_token %}
+    <label for="fname">Employee Name:</label><br>
+    <input type="text" id="fname" name="fname" value= {{emp_obj_edit.employeeName}} ><br><br>
+
+    <label for="lname">Employee Designation:</label><br>
+    <input type="text" id="lname" name="lname" value=  {{emp_obj_edit.employeeDesignation}} ><br><br>
+
+    <label for="Salary">Employee Salary:</label><br>
+    <input type="text" id="lname" name="Salary" value={{emp_obj_edit.employeeSalary}} ><br><br>
+    
+    <input type="submit" value="Submit">
+</form>
+
+<table>
+    <tr>
+      <th>Employee ID</th>
+      <th>Employee Name</th>
+      <th>Employee Designation</th>
+      <th>Employee Salary</th>
+    </tr>
+    {% for i in emp_obj %}
+    <tr>
+    <td><a href = "{% url 'edit_employee' i.id %}">{{i.id}}</a></td>
+    <td>{{i.employeeName}}</td>
+    <td>{{i.employeeDesignation}}</td>
+    <td>{{i.employeeSalary}}</td>
+    </tr>
+    {% endfor %}
+  </table>
